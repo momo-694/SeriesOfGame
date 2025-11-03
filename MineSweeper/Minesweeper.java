@@ -57,7 +57,7 @@ public class Minesweeper extends JFrame {
 				tile.setFont(new Font("Arial Unicode MS", Font.PLAIN, 45));
 				tile.addMouseListener(new Mouse adapter() {
 					@Override
-					public void mousePressed(Mouse event e) {
+					public void mousePressed(MouseEvent e) {
 						//TODO
 					}
 				});
