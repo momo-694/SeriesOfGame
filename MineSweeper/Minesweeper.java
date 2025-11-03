@@ -36,7 +36,7 @@ public class Minesweeper extends JFrame {
 		setSize(boardHeight, boardWidth);
 		setLayout(new BorderLayout());
 		
-		pnl = new JPanel(new BorderLayout());
+		pnlText = new JPanel(new BorderLayout());
 		lblText = new JLabel("Minesweeper" + mineCount);
 		pnlText.add(lblText);
 		
@@ -53,16 +53,18 @@ public class Minesweeper extends JFrame {
 		for(int r = 0; r < tRow; r++) {
 			for(int c = 0; c < tCol; c++) {
 				MineTile tile = new MineTile(r, c);
+				board[r][c] = tile;
+				
 				tile.setFocusable(false);
 				tile.setFont(new Font("Arial Unicode MS", Font.PLAIN, 45));
-				tile.addMouseListener(new Mouse adapter() {
+				tile.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
 						//TODO
 					}
 				});
+				pnlBoard.add(tile);
 			}
-			pnlBoard.add(tile);
 		}
 	}
 }
