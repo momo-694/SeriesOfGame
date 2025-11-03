@@ -1,2 +1,6 @@
-# SeriesOfGame
-just a project to myself. idk.
+# Description
+The repository is made for educational purposes.
+Things are still in progress...
+
+> [!NOTE]
+> Nothing to see here.
