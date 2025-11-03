@@ -22,8 +22,8 @@ public class Minesweeper extends JFrame {
 	private final int wHeight = tSize*tRow;
 	private final int wWidth = tSize*tCol;
 	private final int mineCount = 10;
-	private MineTile[][] = new MineTile[tRow][tCol];
-	private ArrayList<MineTile> mTiles;
+	private MineTile[][] mTiles = new MineTile[tRow][tCol];
+	private ArrayList<MineTile> mineList;
 	
 	//components
 	private JLabel lblText;
