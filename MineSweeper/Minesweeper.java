@@ -45,6 +45,7 @@ public class Minesweeper extends JFrame {
 		//TODO
 		
 		add(pnlText, BorderLayout.NORTH);
+		add(pnlBoard);
 		setVisible(true);
 	}
 	
