@@ -37,6 +37,7 @@ public class Minesweeper extends JFrame {
 	private JFrame tryAgainFrame;
 	
 	public Minesweeper() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Minesweeper");
 		setSize(boardHeight, boardWidth);
 		setResizable(false);
@@ -45,7 +46,7 @@ public class Minesweeper extends JFrame {
 		
 		pnlText = new JPanel(new GridLayout(1, 2));
 		pnlText.setBackground(Color.GRAY);
-		lblTime = new JLabel("TIME: ");
+		lblTime = new JLabel("TIME: " + time);
 		lblTime.setHorizontalAlignment(JLabel.CENTER);
 
 		lblFlag = new JLabel("FLAG LEFT: " + flagRemaining);
@@ -270,9 +271,5 @@ public class Minesweeper extends JFrame {
 			}
 		});
 		timer.start();
-	}
-
-	public static void main(String[] args) {
-		new Minesweeper();
 	}
 }
