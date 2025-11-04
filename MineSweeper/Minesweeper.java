@@ -29,8 +29,9 @@ public class Minesweeper extends JFrame {
 	private boolean isGameOver = false;
 
 	//components
-	private JLabel lblText, lblFlag;
+	private JLabel lblTime, lblFlag;
 	private JPanel pnlText, pnlBoard;
+	private Timer timer;
 	
 	public Minesweeper() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,13 +43,13 @@ public class Minesweeper extends JFrame {
 		
 		pnlText = new JPanel(new GridLayout(1, 2));
 		pnlText.setBackground(Color.GRAY);
-		lblText = new JLabel("MINESWEEPER: " + mineCount);
-		lblText.setHorizontalAlignment(JLabel.CENTER);
+		lblTime = new JLabel("TIME: 00:00:00");
+		lblTime.setHorizontalAlignment(JLabel.CENTER);
 
 		lblFlag = new JLabel("FLAG LEFT: " + flagRemaining);
 		lblFlag.setHorizontalAlignment(JLabel.CENTER);
 
-		pnlText.add(lblText);
+		pnlText.add(lblTime);
 		pnlText.add(lblFlag);
 		
 		pnlBoard = new JPanel(new GridLayout(tRow, tCol));
@@ -57,7 +58,9 @@ public class Minesweeper extends JFrame {
 		
 		add(pnlText, BorderLayout.NORTH);
 		add(pnlBoard);
+
 		setVisible(true);
+		startTimer();
 	}
 	
 	public void setBoardTiles() {
@@ -80,7 +83,6 @@ public class Minesweeper extends JFrame {
 								if(tile.getIcon() == null) {
 									if(mineList.contains(tile)) {
 										revealMine();
-										isGameOver = true;
 									}else {
 										checkMine(tile.r, tile.c);
 									}
@@ -124,6 +126,10 @@ public class Minesweeper extends JFrame {
 		for(MineTile mine : mineList) {
 			mine.setIcon(new ImageIcon("mine.png"));
 		}
+
+		isGameOver = true;
+		timer.stop();
+		gameOver();
 	}
 
 	public void checkMine(int r, int c) {
@@ -173,6 +179,8 @@ public class Minesweeper extends JFrame {
 
 		if(tileClicked == (tRow*tCol-mineList.size())) {
 			isGameOver = true;
+			timer.stop();
+			gameOver();
 		}
 	}
 	public int countMine(int r, int c) {
@@ -182,6 +190,39 @@ public class Minesweeper extends JFrame {
 			return 1;
 		}
 		return 0;
+	}
+
+	public void gameOver() {
+		pnlText.setLayout(new BorderLayout());
+		pnlText.removeAll();
+		lblTime.setText("GAME OVER!");
+		pnlText.add(lblTime);
+	}
+
+	public void startTimer() {
+		timer = new Timer(1000, new ActionListener() {
+			int seconds = 0;
+			int minutes = 0;
+			int hours = 0;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				seconds++;
+
+				if(seconds == 60) {
+					seconds = 0;
+					minutes++;
+					if(minutes == 60) {
+						minutes = 0;
+						hours++;
+					}
+				}
+
+				String time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+				lblTime.setText("TIME: " + time);
+			}
+		});
+		timer.start();
 	}
 
 	public static void main(String[] args) {

@@ -1,2 +1,0 @@
-
-			mine.setIcon(new ImageIcon(
