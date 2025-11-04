@@ -32,16 +32,20 @@ public class Minesweeper extends JFrame {
 	public Minesweeper() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Minesweeper");
-		setLocationRelativeTo(null);
 		setSize(boardHeight, boardWidth);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
 		
 		pnlText = new JPanel(new BorderLayout());
-		lblText = new JLabel("Minesweeper" + mineCount);
+		lblText = new JLabel("MINESWEEPER: " + mineCount);
+		lblText.setHorizontalAlignment(JLabel.CENTER);
+		lblText.setBackground(Color.DARK_GRAY);
 		pnlText.add(lblText);
 		
 		pnlBoard = new JPanel(new GridLayout(tRow, tCol));
 		setBoardTiles();
+		setMines();
 		//TODO
 		
 		add(pnlText, BorderLayout.NORTH);
@@ -57,14 +61,46 @@ public class Minesweeper extends JFrame {
 				
 				tile.setFocusable(false);
 				tile.setFont(new Font("Arial Unicode MS", Font.PLAIN, 45));
+				tile.setBackground(Color.LIGHT_GRAY);
 				tile.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
-						//TODO
+						MineTile tile = (MineTile) e.getSource();
+
+						if(e.getButton() == MouseEvent.BUTTON1) {
+							if(tile.getText() == "") {
+								if(mineList.contains(tile)) {
+									revealMines();
+								}
+							}
+						}else if(e.getButton() == MouseEvent.BUTTON2) {
+							System.out.println("heh");
+						}
 					}
 				});
 				pnlBoard.add(tile);
 			}
 		}
+	}
+
+	public void setMines() {
+		mineList = new ArrayList<MineTile>();
+
+		for(int i = 0; i < mineCount; i++) {
+			MineTile mine = board[new Random().nextInt(tRow)][new Random().nextInt(tCol)];
+			if(!mineList.contains(mine)) {
+				mineList.add(mine);
+			}
+		}
+	}
+
+	public void revealMines() {
+		for(MineTile mine : mineList) {
+			mine.setIcon(new ImageIcon("mine.png"));
+		}
+	}
+
+	public static void main(String[] args) {
+		new Minesweeper();
 	}
 }
