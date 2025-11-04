@@ -27,14 +27,16 @@ public class Minesweeper extends JFrame {
 	private ArrayList<MineTile> mineList;
 	private int tileClicked = 0;
 	private boolean isGameOver = false;
+	private boolean didWon = false;
+	private String time = "00:00:00";
 
 	//components
 	private JLabel lblTime, lblFlag;
-	private JPanel pnlText, pnlBoard;
+	private JPanel pnlText, pnlBoard, pnlGameOver, pnlRetryButton;
 	private Timer timer;
+	private JFrame tryAgainFrame;
 	
 	public Minesweeper() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Minesweeper");
 		setSize(boardHeight, boardWidth);
 		setResizable(false);
@@ -43,7 +45,7 @@ public class Minesweeper extends JFrame {
 		
 		pnlText = new JPanel(new GridLayout(1, 2));
 		pnlText.setBackground(Color.GRAY);
-		lblTime = new JLabel("TIME: 00:00:00");
+		lblTime = new JLabel("TIME: ");
 		lblTime.setHorizontalAlignment(JLabel.CENTER);
 
 		lblFlag = new JLabel("FLAG LEFT: " + flagRemaining);
@@ -179,6 +181,7 @@ public class Minesweeper extends JFrame {
 
 		if(tileClicked == (tRow*tCol-mineList.size())) {
 			isGameOver = true;
+			didWon = true;
 			timer.stop();
 			gameOver();
 		}
@@ -197,6 +200,50 @@ public class Minesweeper extends JFrame {
 		pnlText.removeAll();
 		lblTime.setText("GAME OVER!");
 		pnlText.add(lblTime);
+
+		String mess = (didWon ? "You won!" : "You lose!");
+		tryAgainFrame = new JFrame("Game Over");
+		tryAgainFrame.setSize(300, 200);
+		tryAgainFrame.setLocationRelativeTo(null);
+		tryAgainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		tryAgainFrame.setResizable(false);
+
+		pnlGameOver = new JPanel(new GridLayout(3, 1));
+		pnlGameOver.add(new JLabel(mess));
+		pnlGameOver.add(new JLabel("Time used: " + time));
+		pnlGameOver.add(new JLabel("Try again?"));
+
+		for(Component com : pnlGameOver.getComponents()) {
+			((JLabel) com).setHorizontalAlignment(JLabel.CENTER);
+			((JLabel) com).setFont(new Font("Times New Roman", Font.PLAIN, 24));
+		}
+
+		pnlRetryButton = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		pnlRetryButton.add(new JButton("YES"));
+		pnlRetryButton.add(new JButton("EXIT"));
+
+		for(Component com : pnlRetryButton.getComponents()) {
+			((JButton) com).setFocusable(false);
+			((JButton) com).setBackground(Color.GRAY);
+			((JButton) com).setPreferredSize(new Dimension(100, 50));
+			((JButton) com).addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					switch (e.getActionCommand()) {
+						case "YES":
+							dispose();
+							new Minesweeper();
+							break;
+					}
+					tryAgainFrame.dispose();
+					dispose();
+				}
+			});
+		}
+
+		tryAgainFrame.add(pnlGameOver, BorderLayout.NORTH);
+		tryAgainFrame.add(pnlRetryButton);
+		tryAgainFrame.setVisible(true);
 	}
 
 	public void startTimer() {
@@ -218,7 +265,7 @@ public class Minesweeper extends JFrame {
 					}
 				}
 
-				String time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+				time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
 				lblTime.setText("TIME: " + time);
 			}
 		});
