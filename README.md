@@ -6,7 +6,10 @@ Things are still in progress...
 <!-- > Nothing to see here. -->
 
 # TODO
-- [ ] Make a plan for the project.
+- [x] Make a plan for the project.
+- [ ] Learn the game engine: GODOT.
+- [ ] Make the layout of the game.
+- [ ] Optimizate and enhance the overall performance. 
 
 # About this Repository
 Greetings, Good Lad!
@@ -24,27 +27,45 @@ Please Understand, Thank you.
 > Don't forget to touch some grass! A stable mind is adviced.
 
 # FAQ's
+## How to git config?
+Consider we only have two priority configs we should always set, which is the email\
+and the username.
+
+Proceed to perform the following commands:
+```
+git config --global user.email "useremail@example.com"
+git config --global user.name "yourusername"
+```
+
 ## Why my clone of this repository having conflict with the current repository?
 __Don't forget to do the following:__\
 Always use the `git pull origin main` command before doing any action within the repository.
 
 Afterwards, just perform the 3 commands to save changes
-- `git add .`
-- `git commit -m "Explain the changes"`
-- `git push -u origin main`
+```
+git add .
+git commit -m "Explain the changes"
+git push -u origin main
+```
 
 > [!NOTE]
+> The dot (.) in `git add` is a wildcard that means "all" or "everything".
+
+> [!IMPORTANT]
 > Remember to always perform all of these!
+
 ## How do I restore my deleted/changed file back?
 To restore back your files, use the `git restore .` command.
 
 If you want to restore your file from the previous commit, you can use the `git checkout {hash_code}` command.
 
 __You can access the hash code by doing:__
-- `git log`
-- `Select and copy the commit's hash you want to checkout`
+```
+git log
+```
+- Select and copy the commit's hash you want to checkout
 
 Afterwards, perform the `git restore .` command.
 
 > [!NOTE]
-> If somehow `git log` doesn't seem to work and saying something about "pager". Do `pkg install less`.
+> If somehow `git log` doesn't seem to work and saying something about "pager". Do install the `less` package to solve the problem.
