@@ -61,6 +61,25 @@ Done!
 git config --global user.email "useremail@example.com"
 git config --global user.name "yourusername"
 ```
+
+## Pull the folders/files of this repository to your local computer
+- Select/Create a folder where you want to store the repository
+- Open Command prompt
+- Copy the location of your directory folder
+- Type this command
+```
+cd paste/the/directory/here
+```
+
+> [!NOTE]
+> Change the `paste/the/directory/here` with the directory you copied
+- Lastly, Perform this command
+```
+git pull https://github.com/momo-694/SeriesOfGame.git
+```
+
+Done!
+
 # FAQ's
 ## Why my clone of this repository having conflict with the current repository?
 __Don't forget to do the following:__\
