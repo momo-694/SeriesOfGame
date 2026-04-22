@@ -45,7 +45,7 @@ Then select or type the following:
 - Type 'Y' or press Enter
 - Login with a web browser
 - Copy the link given (e.g. https://github.com/login/device) to your browser
-- Paste the 8 digit one time code in your command prompt
+- Copy and paste the 8 digit one time code given in your command prompt to your browser
 - Authorize GitHub
 
 Done!
