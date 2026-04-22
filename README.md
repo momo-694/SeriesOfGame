@@ -26,17 +26,36 @@ Please Understand, Thank you.
 > [!CAUTION]
 > Don't forget to touch some grass! A stable mind is adviced.
 
-# FAQ's
-## How to git config?
-Consider we only have two priority configs we should always set, which is the email\
-and the username.
+# Get Started
+## Installing Git and GitHub CLI
+Windows:
+```
+winget install --id Git.Git
+winget install --id GitHub.cli
+```
 
-Proceed to perform the following commands:
+## Setting up GitHub CLI
+Perform this single line of command:
+```
+gh auth login
+```
+Then select or type the following:
+- GitHub.com
+- HTTPS
+- Type 'Y' or press Enter
+- Login with a web browser
+- Copy the link given (e.g. https://github.com/login/device) to your browser
+- Paste the 8 digit one time code in your command prompt
+- Authorize GitHub
+
+Done!
+
+## Initialize git config
 ```
 git config --global user.email "useremail@example.com"
 git config --global user.name "yourusername"
 ```
-
+# FAQ's
 ## Why my clone of this repository having conflict with the current repository?
 __Don't forget to do the following:__\
 Always use the `git pull origin main` command before doing any action within the repository.
