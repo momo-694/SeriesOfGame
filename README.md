@@ -1,3 +1,9 @@
+# Table of Contents
+- [Description](https://github.com/momo-694/SeriesOfGame#description)
+- [TODO](https://github.com/momo-694/SeriesOfGame#todo)
+- [Getting Started](https://github.com/momo-694/SeriesOfGame#getting-started)
+- [FAQ's](https://github.com/momo-694/SeriesOfGame#faqs)
+
 # Description
 The repository is made for educational purposes.\
 Things are still in progress...
@@ -26,7 +32,7 @@ Please Understand, Thank you.
 > [!CAUTION]
 > Don't forget to touch some grass! A stable mind is adviced.
 
-# Get Started
+# Getting Started
 ## Installing Git and GitHub CLI
 Windows:
 ```
