@@ -15,7 +15,7 @@ Things are still in progress...
 - [x] Make a plan for the project.
 - [ ] Learn the game engine: GODOT.
 - [ ] Make the layout of the game.
-- [ ] Optimizate and enhance the overall performance. 
+- [ ] Optimize and enhance the overall performance. 
 
 # About this Repository
 Greetings, Good Lad!
@@ -81,7 +81,7 @@ git pull https://github.com/momo-694/SeriesOfGame.git
 Done!
 
 # FAQ's
-## Why my clone of this repository having conflict with the current repository?
+## Why is my clone of this repository having conflict with the current repository?
 __Don't forget to do the following:__\
 Always use the `git pull origin main` command before doing any action within the repository.
 
